@@ -1,10 +1,6 @@
 import 'dart:convert';
 import 'dart:io';
 
-int calculate() {
-  return 6 * 7;
-}
-
 void checkVersion() async {
   var checkVersion = await Process.start('flutter', ['--version']);
   await checkVersion.stdout.transform(utf8.decoder).forEach(print);
@@ -14,3 +10,5 @@ void checkVersion() async {
       ? 'Flutter is installed!'
       : 'Error! Flutter is not installed.');
 }
+
+void run(List<String> arguments) async {}
