@@ -3,3 +3,5 @@ in `lib/`, and example unit test in `test/`.
 
 Created from templates made available by Stagehand under a BSD-style
 [license](https://github.com/dart-lang/stagehand/blob/master/LICENSE).
+
+**The use of fvm (Flutter Version Management) is highly recommended for handling Flutter projects.**
