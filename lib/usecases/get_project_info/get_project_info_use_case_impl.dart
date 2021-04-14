@@ -40,6 +40,11 @@ class GetProjectInfoUseCaseImpl implements GetProjectInfoUseCase {
     }
   }
 
+  @override
+  String? getCurrentPath() {
+    return _pubspecFile.path;
+  }
+
   File get _pubspecFile => File('pubspec.yaml');
   dynamic get _pubspecYaml => loadYaml(_pubspecFile.readAsStringSync());
 }

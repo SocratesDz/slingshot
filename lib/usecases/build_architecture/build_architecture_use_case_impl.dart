@@ -31,7 +31,11 @@ class BuildArchitectureUseCaseImpl implements BuildArchitectureUseCase {
     // - l10n/
 
     // Create 'app' directory
+    createDirectories(path);
+    createFiles(appName, path);
+  }
 
+  void createDirectories(String path) {
     final directories = [
       'app/blocs',
       'app/screens',
@@ -50,14 +54,17 @@ class BuildArchitectureUseCaseImpl implements BuildArchitectureUseCase {
     for (var d in directories) {
       Directory('${Directory(path).path}/$d').createSync(recursive: true);
     }
+  }
 
+  void createFiles(String appName, String path) {
+    final templatePath = 'assets/templates';
     final filesAndAssets = {
       'app/blocs/simple_bloc_observer.dart':
-          'assets/templates/simple_bloc_observer.dart.template',
-      'app/app.dart': '',
-      'app/navigator.dart': '',
-      'data/constants.dart': '',
-      'di/di.dart': ''
+          '$templatePath/simple_bloc_observer.dart.template',
+      'app/app.dart': '$templatePath/app.dart.template',
+      'app/navigator.dart': '$templatePath/navigator.dart.template',
+      'data/constants.dart': '$templatePath/constants.dart.template',
+      'di/di.dart': '$templatePath/di.dart.template'
     };
     filesAndAssets.forEach((filePath, templatePath) {
       if (templatePath.isNotEmpty) {
@@ -66,7 +73,7 @@ class BuildArchitectureUseCaseImpl implements BuildArchitectureUseCase {
         final templateFileSource = File(templatePath).readAsStringSync();
         final template =
             Template(templateFileSource, name: file.uri.pathSegments.last);
-        final renderedTemplate = template.renderString({});
+        final renderedTemplate = template.renderString({'appName': appName});
         file.writeAsStringSync(renderedTemplate);
       }
     });

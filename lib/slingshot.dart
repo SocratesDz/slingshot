@@ -1,10 +1,13 @@
-import 'package:slingshot/commands/create_project_command.dart';
+import 'package:slingshot/commands/build_file_structure_command.dart';
 import 'package:slingshot/commands/show_help_command.dart';
-import 'package:slingshot/usecases/create_project/create_project_use_case_impl.dart';
+import 'package:slingshot/usecases/build_architecture/build_architecture_use_case_impl.dart';
+import 'package:slingshot/usecases/get_project_info/get_project_info_use_case_impl.dart';
 
 void run(List<String> arguments) async {
   var commands = {
-    'create': CreateProjectCommand(CreateProjectUseCaseImpl()),
+    // 'create': CreateProjectCommand(CreateProjectUseCaseImpl()),
+    'create': BuildFileStructureCommand(
+        BuildArchitectureUseCaseImpl(), GetProjectInfoUseCaseImpl()),
     'help': ShowHelpCommand()
   };
 
