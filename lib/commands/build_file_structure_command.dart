@@ -14,13 +14,14 @@ class BuildFileStructureCommand implements Command {
     try {
       if (getProjectInfoUseCase.isFlutterProject()!) {
         final appName = getProjectInfoUseCase.getAppName();
-        final currentPath = getProjectInfoUseCase.getCurrentPath();
-        buildArchitectureUseCase(appName: appName!, path: currentPath!);
+        final libPath = getProjectInfoUseCase.getLibDirectoryPath();
+        buildArchitectureUseCase(appName: appName!, path: libPath!);
       } else {
         print('Not inside Flutter project.');
       }
-    } on Exception catch (e) {
+    } on Exception catch (e, s) {
       print(e.toString());
+      print(s.toString());
     }
   }
 }

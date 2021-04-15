@@ -3,4 +3,5 @@ abstract class GetProjectInfoUseCase {
   String? getVersionName();
   bool? isFlutterProject();
   String? getCurrentPath();
+  String? getLibDirectoryPath();
 }

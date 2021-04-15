@@ -8,5 +8,5 @@ void main() {
   test('Create project use case with project name.', () {
     final createProjectUseCase = MockCreateProjectUsecase();
     createProjectUseCase('test');
-  }, skip: true);
+  });
 }

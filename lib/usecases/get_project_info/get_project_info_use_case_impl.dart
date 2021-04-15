@@ -42,7 +42,12 @@ class GetProjectInfoUseCaseImpl implements GetProjectInfoUseCase {
 
   @override
   String? getCurrentPath() {
-    return _pubspecFile.path;
+    return _pubspecFile.parent.path;
+  }
+
+  @override
+  String? getLibDirectoryPath() {
+    return '${getCurrentPath()}/lib';
   }
 
   File get _pubspecFile => File('pubspec.yaml');

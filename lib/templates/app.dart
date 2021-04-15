@@ -1,3 +1,4 @@
+final _appFile = '''
 import 'package:flutter/material.dart';
 import 'package:{{appName}}/app/navigator.dart';
 
@@ -9,3 +10,6 @@ class MyApp extends StatelessWidget {
     );
   }
 }
+''';
+
+final appFile = _appFile;

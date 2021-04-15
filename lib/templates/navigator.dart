@@ -1,4 +1,6 @@
+final _navigatorFile = '''
 import 'package:flutter/material.dart';
+import 'package:{{appName}}/app/screens/splash_screen.dart';
 
 class AppNavigator {
   static Route<dynamic> generateRoute(RouteSettings settings) {
@@ -22,3 +24,6 @@ class AppNavigator {
             ));
   }
 }
+''';
+
+final navigatorFile = _navigatorFile;

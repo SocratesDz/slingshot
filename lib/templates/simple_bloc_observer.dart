@@ -1,3 +1,4 @@
+final _blocObserverFile = '''
 import 'package:bloc/bloc.dart';
 
 class SimpleBlocObserver extends BlocObserver {
@@ -21,3 +22,6 @@ class SimpleBlocObserver extends BlocObserver {
     super.onTransition(bloc, transition);
   }
 }
+''';
+
+final blocObserverFile = _blocObserverFile;

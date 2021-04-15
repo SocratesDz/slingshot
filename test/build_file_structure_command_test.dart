@@ -17,6 +17,8 @@ void main() {
       when(getProjectInfoUseCase.isFlutterProject()).thenReturn(true);
       when(getProjectInfoUseCase.getCurrentPath())
           .thenReturn('${Directory.current.path}/$test_path');
+      when(getProjectInfoUseCase.getLibDirectoryPath())
+          .thenReturn('${Directory.current.path}/$test_path');
 
       final insideProjectDir = getProjectInfoUseCase.isFlutterProject();
       if (insideProjectDir == true) {

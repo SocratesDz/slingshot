@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:mustache_template/mustache.dart';
 import 'package:slingshot/usecases/build_architecture/build_architecture_use_case.dart';
+import 'package:slingshot/templates/templates.dart' as templates;
 
 class BuildArchitectureUseCaseImpl implements BuildArchitectureUseCase {
   @override
@@ -52,28 +53,29 @@ class BuildArchitectureUseCaseImpl implements BuildArchitectureUseCase {
       'l10n'
     ];
     for (var d in directories) {
+      print('${Directory(path).path}/$d');
       Directory('${Directory(path).path}/$d').createSync(recursive: true);
     }
   }
 
   void createFiles(String appName, String path) {
-    final templatePath = 'assets/templates';
     final filesAndAssets = {
-      'app/blocs/simple_bloc_observer.dart':
-          '$templatePath/simple_bloc_observer.dart.template',
-      'app/app.dart': '$templatePath/app.dart.template',
-      'app/navigator.dart': '$templatePath/navigator.dart.template',
-      'data/constants.dart': '$templatePath/constants.dart.template',
-      'di/di.dart': '$templatePath/di.dart.template'
+      'app/blocs/simple_bloc_observer.dart': templates.blocObserverFile,
+      'app/screens/splash_screen.dart': templates.splashScreenFile,
+      'app/app.dart': templates.appFile,
+      'app/navigator.dart': templates.navigatorFile,
+      'data/constants.dart': templates.constantsFile,
+      'di/di.dart': templates.diFile,
+      'main.dart': templates.mainFile
     };
-    filesAndAssets.forEach((filePath, templatePath) {
-      if (templatePath.isNotEmpty) {
+    filesAndAssets.forEach((filePath, templateStr) {
+      if (templateStr.isNotEmpty) {
         final file = File('${Directory(path).path}/$filePath')
           ..createSync(recursive: true);
-        final templateFileSource = File(templatePath).readAsStringSync();
         final template =
-            Template(templateFileSource, name: file.uri.pathSegments.last);
+            Template(templateStr, name: file.uri.pathSegments.last);
         final renderedTemplate = template.renderString({'appName': appName});
+        print(file.absolute.path);
         file.writeAsStringSync(renderedTemplate);
       }
     });
